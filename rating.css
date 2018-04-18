@@ -1,0 +1,15 @@
+x-rating {
+  font-family: 'Ionicons';
+  font-size: 20px;
+  display: inline-flex;
+}
+
+x-rating > .star::after {
+  content: '\f3ae';
+  color: #cbcbcb;
+}
+
+x-rating > .star.full::after {
+  content: '\f2fc';
+  color: #f5d62a;
+}
