@@ -37,6 +37,6 @@ if (empty($username) || empty($forename) || empty($surname) || empty($password))
   }
 
 } else {
-  header("Location: ../Artistic/signup-members.php");
+  header("Location: ../Artistic/signup.php");
   exit();
 }

@@ -1,5 +1,5 @@
 <?php
-SESSION_START();
+session_start();
 include 'connection.php';
 ?>
 
@@ -75,17 +75,20 @@ include 'connection.php';
           <li><a href="ranking.php">Ranking</a></li>
           <li><a href="search.php">Search</a></li>
           <?php
-              if (isset($_SESSION['u_id'])) {
-                echo '<li><a href="logout_log.php" name="logout">Log-out</a></li>';
+              if (isset($_SESSION['u_id'])|| isset($_SESSION['mem_id'])) {
+                if(isset($_SESSION['u_id'])){
+                  echo "<li><a href=\"upload.php\">Upload</a></li>
+                  <li><a href=\"canvas.php\">My Canvas</a></li>
+                  <li><a href=\"logout_log.php\" name=\"logout\">Log-out</a></li>";
+                }else {
+                  echo "
+                  <li><a href=\"logout_log.php\" name=\"logout\">Log-out</a></li>
+                  ";
+                }
+
               } else {
                 echo '<li><a href="login.php">Login</a></li>
-                      <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="drop-down">Sign-up</a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="signup.php">Artist</a>
-                        <a class="dropdown-item" href="#">Member</a>
-                      </div>
-                      </li>';
+                      <li><a href="signup.php">Sign-up</a></li>';
               }
            ?>
           <!--li><a href="#" class="btn"><img src="images/buttonrank.png"></a></li-->

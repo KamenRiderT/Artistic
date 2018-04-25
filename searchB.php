@@ -16,7 +16,7 @@ echo "There are ".$queryResults." results found.";
 
 if ($queryResults > 0) {
   while ($row = mysqli_fetch_assoc($result)) {
-    echo "<a href='view.php?title=".$row['Art_Name']."'><div id='img_div'>";
+    echo "<a href='view.php?Art_Name=".$row['Art_Name']."'><div id='img_div'>";
     echo "<h3>".$row['Art_Name']."</h3>";
     echo "<img src='archive/".$row['Art_File']."' >";
     echo "</div></a>";

@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_POST['login'])) {
+if (isset($_POST['login2'])) {
 
   include 'connection.php';
 
@@ -13,7 +13,7 @@ if (empty($username) || empty($password)) {
   header("Location: ../Artistic/index.php?login=empty");
   exit();
 } else {
-   $sql = "SELECT * FROM artist WHERE Artist_Username='$username'";
+   $sql = "SELECT * FROM memebers WHERE Member_Username='$username'";
    $result = mysqli_query($conn, $sql);
    $resultCheck = mysqli_num_rows($result);
    if ($resultCheck < 1) {
@@ -22,17 +22,16 @@ if (empty($username) || empty($password)) {
    } else {
      if ($row = mysqli_fetch_assoc($result)) {
 
-       $hashedPasswordCheck = password_verify($password, $row['Artist_Password']);
+       $hashedPasswordCheck = password_verify($password, $row['Member_Password']);
        if ($hashedPasswordCheck == false) {
          header("Location: ../Artistic/index.php?login=error2");
          exit();
        } elseif ($hashedPasswordCheck == true) {
 
-          $_SESSION['u_id'] = $row['Artist_ID'];
-          $_SESSION['f_name'] = $row['Artist_Forename'];
-          $_SESSION['s_name'] = $row['Artist_Surname'];
-          $_SESSION['u_email'] = $row['Artist_Email'];
-          $_SESSION['u_name'] = $row['Artist_Username'];
+          $_SESSION['mem_id'] = $row['Member_ID'];
+          $_SESSION['mem_name'] = $row['Member_Forename'];
+          $_SESSION['mem_name'] = $row['Member_Surname'];
+          $_SESSION['mem_name'] = $row['Member_Username'];
           header("Location: ../Artistic/index.php?login=success");
           exit();
        }

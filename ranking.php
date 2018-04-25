@@ -2,6 +2,25 @@
 include 'header.php';
  ?>
 
+<style>
+
+table {
+  border: 1px solid black;
+  width: 100%;
+}
+
+th {
+  height: 50px;
+  border-bottom: 1px solid black;
+}
+
+td {
+  border-bottom: 1px solid black;
+  height: 50px;
+}
+
+</style>
+
 <div class="container">
 <div class="jumbotron">
   <div class="container">
@@ -50,6 +69,30 @@ include 'header.php';
   </div>
 </div>
 </div>
+<?php
+include 'connection.php';
+
+$sqlretrieve = "SELECT * FROM artist ORDER BY Artist_Ranking desc";
+$sqldata = mysqli_query($conn, $sqlretrieve) or die('error retrieving data');
+
+echo "<table class='table table-dark'>";
+echo "<thead>";
+echo "<tr>
+      <th scope='col'>RANK</th>
+      <th>ARTIST NAME</th>
+      </tr>";
+echo "</thead>";
+while($row = mysqli_fetch_array($sqldata, MYSQLI_ASSOC)) {
+  echo "<tbody>";
+  echo "<tr><td>";
+  echo $row['Artist_Ranking'];
+  echo "</td><td>";
+  echo $row['Artist_Username'];
+  echo "</td>";
+  echo "</tbody>";
+}
+echo "</table>";
+?>
 
 <?php
 include 'footer.php';

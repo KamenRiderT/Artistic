@@ -1,6 +1,11 @@
 <?php
  include 'header.php';
 ?>
+<style>
+.list {
+  margin: 0 auto;
+}
+</style>
 <div class="container">
   <div class="row">
     <div class="col-xs-6 col-xs-offset-3">
@@ -18,6 +23,7 @@
 </div>
 </div>
 <div class="image-container">
+  <div class="col-xs-6 col-xs-offset-3">
 <?php
   $sql = "SELECT * FROM art";
   $result = mysqli_query($conn, $sql);
@@ -27,11 +33,12 @@
     while ($row = mysqli_fetch_assoc($result)) {
           echo "<div id='img_div'>";
           echo "<h3>".$row['Art_Name']."</h3>";
-          echo "<img src='archive/".$row['Art_File']."' >";
+          echo "<img style='height: 35%; width: 35%;' src='archive/".$row['Art_File']."' >";
           echo "</div>";
     }
   }
  ?>
+</div>
 </div>
 <?php
  include 'footer.php';

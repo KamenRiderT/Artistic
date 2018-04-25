@@ -12,7 +12,7 @@ if (isset($_POST['upload'])) {
 
 	$target = "archive/".basename($_FILES['image']['name']);
 echo $target;
-	$sql = "INSERT INTO art (Art_Name, Art_Caption, Art_File, Uploader, Date_of_upload) VALUES ('$name', '$caption', '$image', '$uploader', 'now()')";
+	$sql = "INSERT INTO art (Art_Name, Art_Caption, Art_File, Uploader) VALUES ('$name', '$caption', '$image', '$uploader')";
 	mysqli_query($conn, $sql);
 
 	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {

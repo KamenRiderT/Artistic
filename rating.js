@@ -60,8 +60,8 @@ class StarRating extends HTMLElement {
 
       this.value = starIndex + 1;
 
-      let rateArt = new Art('rate');
-      this.dispatchArt(rateArt);
+      //let rateArt = new Art('rate');
+      //this.dispatchArt(rateArt);
     });
   }
 }

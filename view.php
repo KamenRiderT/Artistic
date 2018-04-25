@@ -1,44 +1,42 @@
 <?php
  include 'header.php';
+ $art = null;
+
+ if(isset($_GET['Art_Name'])) {
+
+   $name = $_GET['Art_Name'];
+   $sql = "SELECT * FROM art WHERE Art_Name like '{$name}'";
+   $art = $conn->query($sql)->fetch_object();
+ }
 ?>
-
-
 
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
       <h2>Artist Name</h2>
            <?php
-           $sql = "SELECT * FROM art WHERE Art_Name='".$_GET['title']."'";
-           $result = mysqli_query($conn, $sql);
-           while ($row = mysqli_fetch_assoc($result)) {
-           echo "<img src='archive/".$row['Art_File']."'/>";
-          }
+           echo "<img style='height: 100%; width: 100%;' src='archive/".$art->Art_File."'/>";
            ?>
-           <div>
-             <x-rating value="0" number="5"></x-rating>
-             <script src="rating.js"></script>
-             <script>
-               rating.addEventListener('rate', () => {
-                 console.log(rating.value);
-               });
-             </script>
-           </div>
+          <?php if (isset($_SESSION['mem_id'])) {
+             echo "<div class='rating'>
+                    Rating:"; ?>
+                    <?php foreach(range(1, 5) as $rating): ?>
+                    <a href='rate.php?Art_ID=<?php echo $art->Art_ID;?>&rating=<?php echo $rating;?>'><?php  echo $rating; ?></a>
+                    <?php endforeach;
+                echo "</div>";
+                  }
+           ?>
+
        </div>
        <div class="col-lg-6">
          <div class="name-container">
-           <h2>Piece Name</h2>
+           <h2><?php echo $art->Art_Name; ?></h2>
          </div>
-         <div class="comment-container">Super interesting caption you should totally read....
-           in great depth...
+         <div class="comment-container">
+           <?php echo $art->Art_Caption; ?>
          </div>
        </div>
   </div>
-  <div class="jumbotron">
-  Comments go here.... Possibly... maybe...
-  </div>
-
-
 </div>
 <?php
  include 'footer.php';
